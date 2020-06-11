@@ -25,6 +25,9 @@ import { ArmyEditComponent } from './army/army-edit/army-edit.component';
 import { ArmyItemComponent } from './army/army-item/army-item.component';
 import { ArmyAddUnitComponent } from './army/army-add-unit/army-add-unit.component';
 import { ArmyListComponent } from './army/army-list/army-list.component';
+import { CampaignListComponent } from './campaign/campaign-list/campaign-list.component';
+import { CampaignEditComponent } from './campaign/campaign-edit/campaign-edit.component';
+import { CampaignItemComponent } from './campaign/campaign-item/campaign-item.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { ArmyListComponent } from './army/army-list/army-list.component';
     ArmyEditComponent,
     ArmyItemComponent,
     ArmyAddUnitComponent,
-    ArmyListComponent
+    ArmyListComponent,
+    CampaignListComponent,
+    CampaignEditComponent,
+    CampaignItemComponent
   ],
   imports: [
     BrowserModule,

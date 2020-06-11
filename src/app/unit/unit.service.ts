@@ -12,7 +12,7 @@ export class UnitService {
   unitsChanged = new Subject<Unit[]>();
   url = 'https://ng-warhammer.firebaseio.com/unit.json';
 
-  constructor(private httpClient: HttpClient, private authService: AuthService) { }
+  constructor(private httpClient: HttpClient) { }
 
   saveUnit(unit: Unit) {
     let insertar = true;
@@ -20,7 +20,7 @@ export class UnitService {
       console.log(units);
       if(units !== null) {
         units.forEach((unitInList, id) => {
-          if(unit.name === unitInList.name){
+          if(unit.name === unitInList.name && unit.race === unitInList.race) {
             unit.id = id;
             console.info('Actualizando unidad. ');
             units[id] = unit;

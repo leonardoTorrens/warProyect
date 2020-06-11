@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Army } from '../army.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-army-list',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArmyListComponent implements OnInit {
 
-  constructor() { }
+  armys: Army[];
 
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute, private router: Router) { }
+
+  ngOnInit(): void { }
+
+  onAddArmy(){
+    this.router.navigate(['../addArmy'],{relativeTo: this.route});
   }
-
 }

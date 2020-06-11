@@ -19,14 +19,14 @@ export class UnitEditComponent implements OnInit {
 
   unitForm: FormGroup;
 
-  id: number;
+  id: string;
   unidad: Unit;
   constructor(private unitService: UnitService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.id = +params['id'];
-      if(this.id != null){
+      this.id = params['id'];
+      if(this.id != null) {
         this.unitService.fetchData().subscribe(units => {
           console.info("fetcheando data");
           this.unidad = units[this.id];
