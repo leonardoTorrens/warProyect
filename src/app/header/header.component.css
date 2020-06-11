@@ -1,0 +1,8 @@
+li a {
+    cursor: pointer;
+}
+
+.img-responsive {
+    max-width: 10%;
+    max-height: 10px;
+}

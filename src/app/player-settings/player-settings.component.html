@@ -1,0 +1,32 @@
+<h4>Configuracion del Jugador</h4>
+
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-success" [disabled]="!settingsForm.valid">Guardar</button>
+                    <button type="button" class="btn btn-danger" (click)="onCancel()">Cancelar</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="name">Nombre de Usuario</label>
+                        <input type="text" id="name" class="form-control" formControlName="name">
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="race">Raza</label>
+                        <select id="race" class="form-control" formControlName="race">
+                            <option *ngFor="let race of races" [value]="race">
+                              {{race}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

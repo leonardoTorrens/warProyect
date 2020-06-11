@@ -1,0 +1,180 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="unitForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-success" [disabled]="!unitForm.valid">Guardar</button>
+                    <button type="button" class="btn btn-danger" (click)="onCancel()">Cancelar</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" id="name" class="form-control" formControlName="name">
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="race">Raza</label>
+                        <select id="race" class="form-control" formControlName="race">
+                            <option *ngFor="let race of races" [value]="race">
+                              {{race}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="unitCategory">Categoria</label>
+                        <select id="unitCategory" class="form-control" formControlName="unitCategory">
+                            <option *ngFor="let unitCategory of unitCategorys" [value]="unitCategory">
+                              {{unitCategory}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="unitType">Tipo de Unidad</label>
+                        <select id="unitType" class="form-control" formControlName="unitType">
+                            <option *ngFor="let unitType of unitTypes" [value]="unitType">
+                              {{unitType}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="points">Puntos</label>
+                        <input type="text" id="points" class="form-control" formControlName="points">
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="minSize">MinSize</label>
+                        <input type="text" id="minSize" class="form-control" formControlName="minSize">
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="maxSize">MaxSize</label>
+                        <input type="text" id="maxSize" class="form-control" formControlName="maxSize">
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="movement">M</label>
+                        <input type="text" id="movement" class="form-control" formControlName="movement">
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="weaponSkill">HA</label>
+                        <input type="text" id="weaponSkill" class="form-control" formControlName="weaponSkill">
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="ballisticSkill">HP</label>
+                        <input type="text" id="ballisticSkill" class="form-control" formControlName="ballisticSkill">
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="strength">F</label>
+                        <input type="text" id="strength" class="form-control" formControlName="strength">
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="toughness">R</label>
+                        <input type="text" id="toughness" class="form-control" formControlName="toughness">
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="iniciative">I</label>
+                        <input type="text" id="iniciative" class="form-control" formControlName="iniciative">
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="wounds">H</label>
+                        <input type="text" id="wounds" class="form-control" formControlName="wounds">
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="leadership">L</label>
+                        <input type="text" id="leadership" class="form-control" formControlName="leadership">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" formArrayName="rules"> 
+                    <div class="row" *ngFor="let ruleCtrl of unitForm.get('rules')['controls']; let i=index" [formGroupName]="i" style="margin-top: 10px;">
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" formControlName="name">
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="btn btn-danger" (click)="onDeleteRule(i)">X</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-success" (click)="onAddRule()">Agregar Regla</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" formArrayName="equipments"> 
+                    <div class="row" *ngFor="let equipmentCtrl of unitForm.get('equipments')['controls']; let i=index" [formGroupName]="i" style="margin-top: 10px;">
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" formControlName="name">
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="btn btn-danger" (click)="onDeleteEquip(i)">X</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-success" (click)="onAddEquip()">Agregar Equipo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" formArrayName="options"> 
+                    <div class="row" *ngFor="let optionsCtrl of unitForm.get('options')['controls']; let i=index" [formGroupName]="i" style="margin-top: 10px;">
+                        <div class="col-xs-4">
+                            <label for="name">Descripcion</label>
+                            <input type="text" class="form-control" formControlName="name">
+                        </div>
+                        <div class="col-xs-4">
+                            <label for="cost">Costo</label>
+                            <input type="text" class="form-control" formControlName="cost">
+                        </div>
+                        <div class="col-xs-1">
+                            <label for="unico">Simple</label>
+                            <input type="checkbox" class="form-control" formControlName="unico">
+                        </div>
+                        <div class="col-xs-1">
+                            <button type="button" class="btn btn-danger" (click)="onDeleteOption(i)">X</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-success" (click)="onAddOption()">Agregar Opcion</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

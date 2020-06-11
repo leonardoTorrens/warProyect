@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+                <a class="navbar-brand" routerLink="">
+                  <img [src]="imagePathLogo" width="120" height="30" alt="">
+                </a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li routerLinkActive="active"><a routerLink="/auth" *ngIf="!isAuthenticated">Autenticar</a></li>
+                <li><a (click)='logout()' style="cursor: pointer;" *ngIf="isAuthenticated">Cerrar Sesion</a></li>
+                <li class="dropdown" appDropdown *ngIf="isAuthenticated">
+                    <a class="dropdown-toggle" role="button" style="cursor: pointer;" > Administrar <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a routerLink="/units/listUnit" style="cursor: pointer;">Gestionar Unidades</a></li>
+                        <li><a routerLink="/army" style="cursor: pointer;">Gestionar Ejercito</a></li>
+                        <li><a routerLink="/campaign" style="cursor: pointer;">Gestionar Campaña</a></li>
+                        <li><a routerLink="/playerSettings" style="cursor: pointer;">Configuracion</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

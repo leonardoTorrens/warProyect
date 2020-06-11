@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-xs-4">
+        <form [formGroup]="raceForm">
+            <label for="race">Raza</label>
+            <select id="race" class="form-control" formControlName="race" (change)="onOptionChange()">
+                <option *ngFor="let race of races" [value]="race">
+                    {{race}}
+                </option>
+            </select>
+        </form>
+    </div>
+    <div class="col-xs-4">
+        
+    </div>
+    <div class="col-xs-4">
+        <button type="button" class="btn btn-success" (click)="onAddUnit()">Agregar Unidad</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <app-unit-item *ngFor="let unit of units" [unit]="unit"></app-unit-item>
+    </div>
+</div>

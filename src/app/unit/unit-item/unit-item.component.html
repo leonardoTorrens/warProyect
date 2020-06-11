@@ -1,0 +1,54 @@
+<h2>{{unit.name}}</h2>
+<div class="row">
+  <div class="col-xs-6">
+    {{ unit.race }} - {{unit.unitCategory}} - {{ unit.unitType}}
+  </div>
+  <div class="col-xs-6">
+    <button type="button" class="btn btn-success" (click)="onEditUnit()">Editar Unidad</button>
+    <button type="button" class="btn btn-danger" (click)="onDeleteUnit()">Eliminar Unidad</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Puntos</th>
+          <th scope="col">M</th>
+          <th scope="col">HA</th>
+          <th scope="col">HP</th>
+          <th scope="col">F</th>
+          <th scope="col">R</th>
+          <th scope="col">H</th>
+          <th scope="col">I</th>
+          <th scope="col">L</th>
+          <th scope="col">Tamaño</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>{{ unit.points }}</th>
+          <th>{{ unit.profile.movement }}</th>
+          <th>{{ unit.profile.weaponSkill }}</th>
+          <th>{{ unit.profile.ballisticSkill }}</th>
+          <th>{{ unit.profile.toughness }}</th>
+          <th>{{ unit.profile.strength }}</th>
+          <th>{{ unit.profile.wounds }}</th>
+          <th>{{ unit.profile.iniciative }}</th>
+          <th>{{ unit.profile.leadership }}</th>
+          <th>{{ displayedSize }}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h5>Reglas: </h5>
+    <p>{{ rulesString }}</p>
+    <h5>Equipo: </h5>
+    <p>{{ equipmentString }}</p>
+    <h5>Opciones: </h5>
+    <p>{{ opcionesString }}</p>
+  </div>
+</div>
