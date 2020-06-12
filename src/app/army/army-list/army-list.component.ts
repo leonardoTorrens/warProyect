@@ -15,11 +15,11 @@ export class ArmyListComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private armyService: ArmyService) { }
 
   ngOnInit(): void {
+    this.armys = new Array();
     this.armyService.armysChanged.subscribe((army: Army[]) => {
       this.armys = army;
     });
     this.armyService.fetchArmys();
-    //this.armys = new Array();
     console.info(this.armys);
   }
 

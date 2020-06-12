@@ -16,7 +16,8 @@ export class PlayerSettingsService {
     console.info('create new profile');
     let userMail = this.dataStorage.getUserMail();
     this.dataStorage.setPlayerArmy('');
-    this.saveSettings(new PlayerSettings('', '', userMail));
+    let playerSetting=new PlayerSettings('', '', userMail);
+    this.saveSettings(playerSetting);
   }
 
   getProfileSetting(){
@@ -30,6 +31,8 @@ export class PlayerSettingsService {
             this.playerSetting = setting;
             this.dataStorage.setPlayerArmy(setting.selectedArmy);
             this.dataStorage.setUserName(setting.userName);
+            localStorage.setItem('playerArmy', JSON.stringify(setting.selectedArmy));
+            localStorage.setItem('userName', JSON.stringify(setting.userName));
           }
         });
       }

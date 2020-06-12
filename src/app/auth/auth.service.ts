@@ -79,12 +79,16 @@ export class AuthService{
     }
 
     autoLogin(){
+        console.info(JSON.parse(localStorage.getItem('playerArmy')));
         const userData: { email: string, id: string,_token: string, _tokenExpirationDate: string} = JSON.parse(localStorage.getItem('userData'));
         if (!userData) {
             return;
         } else {
             const loadedUser = new User(userData.email,userData.id,userData._token,new Date(userData._tokenExpirationDate));
-            if(loadedUser.token){
+            this.dataStorage.setPlayerArmy(JSON.parse(localStorage.getItem('playerArmy')));
+            this.dataStorage.setUserName(JSON.parse(localStorage.getItem('userName')));
+            this.dataStorage.setUserMail(userData.email);
+            if(loadedUser.token) {
                 this.user.next(loadedUser);
                 const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
                 this.autoLogout(expirationDuration);
@@ -93,7 +97,7 @@ export class AuthService{
     }
 
     autoLogout(expirationDuration: number){
-        this.tokenExpirationTimer = setTimeout(()=>{this.logout()}, expirationDuration);
+        this.tokenExpirationTimer = setTimeout(() => { this.logout() }, expirationDuration);
     }
 
     logout(){

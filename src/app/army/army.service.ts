@@ -17,9 +17,11 @@ export class ArmyService {
   fetchArmys() {
     let userName = this.dataStorage.getUserName();
     this.fetchData().subscribe(armys => {
-      const result = armys.filter(army => army.user == userName);
-      this.armysChanged.next(result);
-      console.info(result);
+      if(armys != null) {
+        const result = armys.filter(army => army.user == userName);
+        this.armysChanged.next(result);
+        console.info(result);
+      }
     });
   }
 
@@ -32,6 +34,7 @@ export class ArmyService {
       this.armysChanged.next(armys.slice());
       armys.splice(index, 1);
       this.httpClient.put(this.url, armys).subscribe(response => {
+        this.armysChanged.next(armys);
         console.info(response);
       });
     });
@@ -57,7 +60,8 @@ export class ArmyService {
           armys = new Array<Army>();
           armys.push(army);
         }
-        this.httpClient.put(this.url, armys).subscribe(response=>{
+        this.httpClient.put(this.url, armys).subscribe(response => {
+          this.armysChanged.next(armys);
           console.info(response);
         });
       });
