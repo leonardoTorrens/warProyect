@@ -50,7 +50,7 @@ export class CampaignEditComponent implements OnInit {
 
   onSubmit() {
     const value = this.campaignForm.value;
-    let savedCampaign = new Campaign(null, value.name, '');
+    let savedCampaign = new Campaign(this.id, value.name, '');
     this.campaignService.saveCampaign(savedCampaign);
     this.router.navigate(['../../listCampaign'],{relativeTo: this.route});
   }

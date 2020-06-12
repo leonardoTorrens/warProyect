@@ -50,14 +50,14 @@ export class ArmyEditComponent implements OnInit {
 
   onCancel(){
     this.armyForm.reset();
-    this.router.navigate(['../../listArmy'],{relativeTo: this.route});
+    this.router.navigate(['../listArmy'],{relativeTo: this.route});
   }
 
   onSubmit(){
     const value = this.armyForm.value;
-    let savedArmy = new Army(0, value.name, null, value.race, '');
+    let savedArmy = new Army(this.id, value.name, null, value.race, '');
     this.armyService.saveArmy(savedArmy);
-    this.router.navigate(['../../listArmy'],{relativeTo: this.route});
+    this.router.navigate(['../listArmy'],{relativeTo: this.route});
   }
 
 }

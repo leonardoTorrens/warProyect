@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataStorageService } from '../shared/data-storage.service';
 import { Campaign } from './campaign.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,42 @@ import { Campaign } from './campaign.model';
 export class CampaignService {
 
   url = 'https://ng-warhammer.firebaseio.com/campaign.json';
+  campaignsChanged = new Subject<Campaign[]>();
 
   constructor(private httpClient: HttpClient, private dataStorage: DataStorageService) { }
 
-  fetchData(){
+  fetchCampaigns() {
+    let orderedCampaigns = new Array<Campaign>();
+    let userName = this.dataStorage.getUserName();
+    this.fetchData().subscribe(campaigns => {
+      campaigns.forEach((campaign, index) => {
+        if(campaign.owner = userName){
+          campaigns.splice(index, 1);
+          orderedCampaigns.push(campaign);
+        }
+      });
+      Array.prototype.push.apply(orderedCampaigns, campaigns);
+    });
+    console.info(orderedCampaigns);
+    return orderedCampaigns;
+  }
+
+  fetchData() {
     return this.httpClient.get<Campaign[]>(this.url);
   }
 
-  saveCampaign(campaign: Campaign){
+  deleteCampaign(index: number) {
+    this.fetchData().subscribe(campaigns => {
+      this.campaignsChanged.next(campaigns.slice());
+      campaigns.splice(index, 1);
+      this.httpClient.put(this.url, campaigns).subscribe(response => {
+        console.info(response);
+      });
+    });
+  }
+
+  saveCampaign(campaign: Campaign) {
+    campaign.owner = this.dataStorage.getUserName();
     this.fetchData().subscribe(campaigns => {
       if(campaigns !== null) {
         if(campaign.id == null) {
@@ -28,6 +57,7 @@ export class CampaignService {
           campaigns[campaign.id] = campaign;
         }
       } else {
+        campaign.id = 0;
         console.info("Primera Campaña. ");
         campaigns = new Array<Campaign>();
         campaigns.push(campaign);

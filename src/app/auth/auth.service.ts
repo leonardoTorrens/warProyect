@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from './user.model'
 import { Router } from '@angular/router';
+import { PlayerSettingsService } from '../player-settings/player-settings.service';
 
 export interface AuthResponseData{
     idToken: string;
@@ -21,7 +22,7 @@ export class AuthService{
     user = new BehaviorSubject<User>(null);
     private tokenExpirationTimer: any;
 
-    constructor(private httpClient: HttpClient, private router: Router) { }
+    constructor(private httpClient: HttpClient, private router: Router, private settingsService: PlayerSettingsService) { }
 
     signUp(email:string, password: string){
         let datos={
@@ -37,7 +38,7 @@ export class AuthService{
     }
 
     login(email:string, password: string){
-        let datos={
+        let datos = {
             email,
             password,
             returnSecureToken: true
@@ -50,6 +51,7 @@ export class AuthService{
     }
 
     private handleAuthentication(email: string, token: string, expiresIn: number, userId: string){
+        this.settingsService.getProfileSetting();
         const expirationDate = new Date(new Date().getTime()+ expiresIn * 1000);
         const user = new User(email, userId, token, expirationDate);
         this.user.next(user);

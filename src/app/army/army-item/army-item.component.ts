@@ -12,6 +12,7 @@ export class ArmyItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

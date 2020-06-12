@@ -19,7 +19,7 @@ export class UnitListComponent implements OnInit {
   constructor(private unitService: UnitService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.subscription = this.unitService.unitsChanged.subscribe((units: Unit[])=>{
+    this.subscription = this.unitService.unitsChanged.subscribe((units: Unit[]) => {
       this.units = units;
     });
     this.raceForm = new FormGroup({

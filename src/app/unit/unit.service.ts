@@ -48,10 +48,10 @@ export class UnitService {
   }
 
   deleteUnit(index: number) {
-    this.fetchData().subscribe(units=>{
+    this.fetchData().subscribe(units => {
       this.unitsChanged.next(units.slice());
       units.splice(index, 1);
-      this.httpClient.put(this.url, units).subscribe(response=>{
+      this.httpClient.put(this.url, units).subscribe(response => {
         console.info(response);
       });
     });

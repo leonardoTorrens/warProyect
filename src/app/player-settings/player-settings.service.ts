@@ -21,7 +21,7 @@ export class PlayerSettingsService {
 
   getProfileSetting(){
     console.log('buscando informacion de perfil')
-    let userMail=this.dataStorage.getUserMail();
+    let userMail = this.dataStorage.getUserMail();
     return this.fetchSettings().subscribe(settings => {
       settings.forEach(setting => {
         if(setting.mail === userMail){
