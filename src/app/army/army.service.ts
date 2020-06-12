@@ -15,11 +15,11 @@ export class ArmyService {
   constructor(private httpClient: HttpClient, private dataStorage: DataStorageService) { }
 
   fetchArmys() {
+    let userName = this.dataStorage.getUserName();
     this.fetchData().subscribe(armys => {
-      console.log(armys);
-      console.log(this.dataStorage.getUserName());
-      this.armysChanged.next(armys.filter(army => {army.user === this.dataStorage.getUserName()}));
-      console.log(armys.filter(army=>{army.user == this.dataStorage.getUserName()}));
+      const result = armys.filter(army => army.user == userName);
+      this.armysChanged.next(result);
+      console.log(result);
     });
   }
 

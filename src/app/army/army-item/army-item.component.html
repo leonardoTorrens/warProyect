@@ -1,1 +1,14 @@
-<p>army-item works!</p>
+
+<div class="row">
+    <div class="col-xs-6">
+        {{ army.name }} - {{army.race}}
+    </div>
+    <div class="col-xs-6">
+        <button type="button" class="btn btn-success" (click)="onEditArmy()">Editar Unidad</button>
+        <button type="button" class="btn btn-danger" (click)="onDeleteArmy()">Eliminar Unidad</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+    </div>
+</div>

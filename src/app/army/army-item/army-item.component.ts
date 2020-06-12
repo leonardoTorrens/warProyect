@@ -15,4 +15,11 @@ export class ArmyItemComponent implements OnInit {
     
   }
 
+  onDeleteArmy(){
+
+  }
+
+  onEditArmy(){
+    
+  }
 }

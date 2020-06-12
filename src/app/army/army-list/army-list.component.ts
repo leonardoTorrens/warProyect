@@ -19,7 +19,8 @@ export class ArmyListComponent implements OnInit {
       this.armys = army;
     });
     this.armyService.fetchArmys();
-    this.armys = new Array();
+    //this.armys = new Array();
+    console.info(this.armys);
   }
 
   onAddArmy(){
