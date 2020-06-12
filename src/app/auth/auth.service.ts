@@ -5,6 +5,7 @@ import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from './user.model'
 import { Router } from '@angular/router';
 import { PlayerSettingsService } from '../player-settings/player-settings.service';
+import { DataStorageService } from '../shared/data-storage.service';
 
 export interface AuthResponseData{
     idToken: string;
@@ -22,7 +23,7 @@ export class AuthService{
     user = new BehaviorSubject<User>(null);
     private tokenExpirationTimer: any;
 
-    constructor(private httpClient: HttpClient, private router: Router, private settingsService: PlayerSettingsService) { }
+    constructor(private httpClient: HttpClient, private router: Router, private settingsService: PlayerSettingsService, private dataStorage: DataStorageService) { }
 
     signUp(email:string, password: string){
         let datos={
@@ -30,7 +31,7 @@ export class AuthService{
             password,
             returnSecureToken: true
         };
-        let url= "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="
+        let url= 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
         return this.httpClient.post<AuthResponseData>(url+this.webKey, datos)
         .pipe(catchError(this.handleError), tap(responseData=>{
             this.handleAuthentication(responseData.email, responseData.idToken, +responseData.expiresIn,responseData.localId);
@@ -43,7 +44,7 @@ export class AuthService{
             password,
             returnSecureToken: true
         };
-        let url= "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key="
+        let url= 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key='
         return this.httpClient.post<AuthResponseData>(url+this.webKey, datos)
             .pipe(catchError(this.handleError), tap(responseData=>{
                 this.handleAuthentication(responseData.email, responseData.idToken, +responseData.expiresIn,responseData.localId);
@@ -51,26 +52,27 @@ export class AuthService{
     }
 
     private handleAuthentication(email: string, token: string, expiresIn: number, userId: string){
-        this.settingsService.getProfileSetting();
         const expirationDate = new Date(new Date().getTime()+ expiresIn * 1000);
         const user = new User(email, userId, token, expirationDate);
         this.user.next(user);
+        this.dataStorage.setUserMail(email);
         localStorage.setItem('userData', JSON.stringify(user));
+        this.settingsService.getProfileSetting();
         this.autoLogout(expiresIn * 1000);
     }
 
     private handleError(errorResponse: HttpErrorResponse){
-        let errorMessage= "Un error inesperado ocurrio";
+        let errorMessage= 'Un error inesperado ocurrio';
         console.error(errorResponse.error.error.message);
         console.error(errorResponse);
         if(!errorResponse.error || !errorResponse.error.error){
             return throwError(errorMessage);
         } else {
             switch(errorResponse.error.error.message){
-                case 'EMAIL_EXISTS': errorMessage = "El mail ya esta registrado. "; break;
-                case 'EMAIL_NOT_FOUND': errorMessage = "El mail utilizado no existe. "; break;
-                case 'INVALID_PASSWORD': errorMessage = "Contraseña invalida. "; break;
-                case 'USER_DISABLED': errorMessage = "Usuario deshabilitado. "; break;
+                case 'EMAIL_EXISTS': errorMessage = 'El mail ya esta registrado. '; break;
+                case 'EMAIL_NOT_FOUND': errorMessage = 'El mail utilizado no existe. '; break;
+                case 'INVALID_PASSWORD': errorMessage = 'Contraseña invalida. '; break;
+                case 'USER_DISABLED': errorMessage = 'Usuario deshabilitado. '; break;
             }
             return throwError(errorMessage);
         }

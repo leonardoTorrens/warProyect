@@ -21,20 +21,22 @@ export class PlayerSettingsComponent implements OnInit {
     });
     let userMail=this.dataStorage.getUserMail();
     this.settingsService.fetchSettings().subscribe(settings => {
-      settings.forEach(setting => {
-        if(setting.mail === userMail){
-          console.log('army '+setting.selectedArmy);
-          console.log('user '+setting.userName);
-          let selectedRace = setting.selectedArmy === '' ? null : setting.selectedArmy;
-          let userName = setting.userName === '' ? null : setting.userName;
-          this.settingsForm = new FormGroup({
-            'race': new FormControl(selectedRace, Validators.required), 
-            'name': new FormControl(userName, Validators.required)
-          });
-          this.dataStorage.setPlayerArmy(setting.selectedArmy);
-          this.dataStorage.setUserName(setting.userName);
-        }
-      });
+      if(settings!= null) {
+        settings.forEach(setting => {
+          if(setting.mail === userMail){
+            console.info('army '+setting.selectedArmy);
+            console.info('user '+setting.userName);
+            let selectedRace = setting.selectedArmy === '' ? null : setting.selectedArmy;
+            let userName = setting.userName === '' ? null : setting.userName;
+            this.settingsForm = new FormGroup({
+              'race': new FormControl(selectedRace, Validators.required), 
+              'name': new FormControl(userName, Validators.required)
+            });
+            this.dataStorage.setPlayerArmy(setting.selectedArmy);
+            this.dataStorage.setUserName(setting.userName);
+          }
+        });
+      }
     });
   }
 

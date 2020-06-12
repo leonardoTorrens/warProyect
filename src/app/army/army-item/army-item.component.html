@@ -1,14 +1,22 @@
-
-<div class="row">
-    <div class="col-xs-6">
-        {{ army.name }} - {{army.race}}
+<div class='row'>
+    <div class='col-xs-12'>
+        <table class='table table-bordered'>
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <th>{{ army.name }}</th>
+                    <th>{{ army.race }}</th>
+                    <th><button type='button' class='btn btn-success' (click)='onEditArmy()'>Editar Ejercito</button></th>
+                    <th><button type='button' class='btn btn-danger' (click)='onDeleteArmy()'>Eliminar Ejercito</button></th>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="col-xs-6">
-        <button type="button" class="btn btn-success" (click)="onEditArmy()">Editar Unidad</button>
-        <button type="button" class="btn btn-danger" (click)="onDeleteArmy()">Eliminar Unidad</button>
+    <div class='col-xs-6'>
+        
     </div>
 </div>
-<div class="row">
-    <div class="col-xs-12">
+<div class='row'>
+    <div class='col-xs-12'>
     </div>
 </div>

@@ -29,10 +29,10 @@ export class UnitListComponent implements OnInit {
   }
 
   onOptionChange() {
-    console.log('cambio la opcion');
+    console.info('cambio la opcion');
     this.units = new Array();
     this.unitService.fetchData().subscribe(units => {
-      console.log(units);
+      console.info(units);
       units.forEach((unit) => {
         if(unit.race === this.raceForm.value.race) {
           this.units.push(unit);

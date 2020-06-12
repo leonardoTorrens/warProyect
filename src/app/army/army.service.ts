@@ -19,7 +19,7 @@ export class ArmyService {
     this.fetchData().subscribe(armys => {
       const result = armys.filter(army => army.user == userName);
       this.armysChanged.next(result);
-      console.log(result);
+      console.info(result);
     });
   }
 
@@ -38,7 +38,7 @@ export class ArmyService {
   }
 
   saveArmy(army: Army) {
-    console.log(this.dataStorage.getUserName());
+    console.info(this.dataStorage.getUserName());
     if(this.dataStorage.getUserName()) {
       army.user = this.dataStorage.getUserName();
       this.fetchData().subscribe(armys => {

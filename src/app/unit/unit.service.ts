@@ -17,7 +17,7 @@ export class UnitService {
   saveUnit(unit: Unit) {
     let insertar = true;
     this.fetchData().subscribe(units => {
-      console.log(units);
+      console.info(units);
       if(units !== null) {
         units.forEach((unitInList, id) => {
           if(unit.name === unitInList.name && unit.race === unitInList.race) {
