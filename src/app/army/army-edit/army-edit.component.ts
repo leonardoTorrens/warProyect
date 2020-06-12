@@ -15,6 +15,7 @@ export class ArmyEditComponent implements OnInit {
   army: Army;
   races = ['Orcos & Goblins', 'Elfos Altos', 'Elfos Silvanos', 'Elfos Oscuros', 'Demonios del Caos', 'Guerreros del Caos', 'Hombres Bestia', 'Enanos del Caos', 'Bretonia', 'El Imperio', 'Reinos Ogros', 'Reyes Funerarios', 'Condes Vampiros', 'Hombres Lagartos', 'Skavens', 'Enanos'];
   armyForm: FormGroup;
+  editMode: boolean; 
 
   constructor(private armyService: ArmyService, private route: ActivatedRoute, private router: Router) { }
 
@@ -22,12 +23,16 @@ export class ArmyEditComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
       if(this.id != null) {
+        console.log("Modo Edicion");
+        this.editMode = true;
         this.armyService.fetchData().subscribe(armys => {
           console.info("fetcheando data");
           this.army = armys[this.id];
           this.initForm();
         });
       } else {
+        this.editMode = false;
+        console.log("Modo Creacion");
         this.initForm();
       }
     });
@@ -44,20 +49,31 @@ export class ArmyEditComponent implements OnInit {
     }
     this.armyForm = new FormGroup({
       'name': new FormControl(name, Validators.required), 
-      'race': new FormControl(race, Validators.required), 
+      'race': new FormControl({value: race, disabled:this.editMode}, Validators.required) 
     });
   }
 
   onCancel(){
     this.armyForm.reset();
-    this.router.navigate(['../listArmy'],{relativeTo: this.route});
+    if(this.editMode){
+      this.router.navigate(['../../listArmy'], {relativeTo: this.route});
+    } else {
+      this.router.navigate(['../listArmy'], {relativeTo: this.route});
+    }
   }
 
   onSubmit(){
     const value = this.armyForm.value;
-    let savedArmy = new Army(this.id, value.name, null, value.race, '');
+    let savedArmy = new Army(this.id, value.name, new Array(), value.race, '', 0);
     this.armyService.saveArmy(savedArmy);
-    this.router.navigate(['../listArmy'],{relativeTo: this.route});
+    if(this.editMode){
+      this.router.navigate(['../../listArmy'], {relativeTo: this.route});
+    } else {
+      this.router.navigate(['../listArmy'], {relativeTo: this.route});
+    }
   }
 
+  onAddUnit(){
+    console.info('Agregando unidad al ejercito');
+  }
 }

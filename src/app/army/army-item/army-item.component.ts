@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Army } from '../army.model';
+import { ArmyService } from '../army.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-army-item',
@@ -7,19 +10,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ArmyItemComponent implements OnInit {
 
-  @Input() army;
+  @Input() army: Army;
 
-  constructor() { }
+  constructor(private armyService: ArmyService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     
   }
 
   onDeleteArmy(){
-
+    this.armyService.deleteArmy(this.army.id);
   }
 
   onEditArmy(){
-    
+    this.router.navigate(['../editArmy/'+this.army.id],{relativeTo: this.route});
   }
 }

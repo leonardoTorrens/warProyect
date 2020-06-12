@@ -52,7 +52,7 @@ import { CampaignItemComponent } from './campaign/campaign-item/campaign-item.co
     ArmyListComponent,
     CampaignListComponent,
     CampaignEditComponent,
-    CampaignItemComponent
+    CampaignItemComponent,
   ],
   imports: [
     BrowserModule,

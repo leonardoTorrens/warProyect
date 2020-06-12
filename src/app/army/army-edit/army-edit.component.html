@@ -25,6 +25,21 @@
                     </div>
                 </div>
             </div>
+            <div *ngIf="editMode">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-success" (click)="onAddUnit()">Agregar Unidad</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6"> <!-- Componente para listado de unidades agregadas -->
+                        
+                    </div>
+                    <div class="col-xs-6"> <!-- Componente para agregar/editar una unidad -->
+                        
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 </div>
