@@ -28,10 +28,14 @@ import { ArmyListComponent } from './army/army-list/army-list.component';
 import { CampaignListComponent } from './campaign/campaign-list/campaign-list.component';
 import { CampaignEditComponent } from './campaign/campaign-edit/campaign-edit.component';
 import { CampaignItemComponent } from './campaign/campaign-item/campaign-item.component';
-import { MagicalItemComponent } from './magical-item/magical-item.component';
-import { MagicalItemEditComponent } from './magicalItem/magical-item-edit/magical-item-edit.component';
-import { MagicalItemItemComponent } from './magicalItem/magical-item-item/magical-item-item.component';
-import { MagicalItemListComponent } from './magicalItem/magical-item-list/magical-item-list.component';
+import { MagicalObjectComponent } from './magicalObject/magical-object.component'
+import { MagicalObjectEditComponent } from './magicalObject/magical-object-edit/magical-object-edit.component'
+import { MagicalObjectItemComponent } from './magicalObject/magical-object-item/magical-object-item.component'
+import { MagicalObjectListComponent } from './magicalObject/magical-object-list/magical-object-list.component';
+import { SpellComponent } from './spell/spell.component';
+import { SpellEditComponent } from './spell/spell-edit/spell-edit.component';
+import { SpellListComponent } from './spell/spell-list/spell-list.component';
+import { SpellItemComponent } from './spell/spell-item/spell-item.component'
 
 @NgModule({
   declarations: [
@@ -57,10 +61,14 @@ import { MagicalItemListComponent } from './magicalItem/magical-item-list/magica
     CampaignListComponent,
     CampaignEditComponent,
     CampaignItemComponent,
-    MagicalItemComponent,
-    MagicalItemEditComponent,
-    MagicalItemItemComponent,
-    MagicalItemListComponent,
+    MagicalObjectComponent,
+    MagicalObjectItemComponent,
+    MagicalObjectEditComponent,
+    MagicalObjectListComponent,
+    SpellComponent,
+    SpellEditComponent,
+    SpellListComponent,
+    SpellItemComponent,
   ],
   imports: [
     BrowserModule,
