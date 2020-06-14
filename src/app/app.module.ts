@@ -28,6 +28,10 @@ import { ArmyListComponent } from './army/army-list/army-list.component';
 import { CampaignListComponent } from './campaign/campaign-list/campaign-list.component';
 import { CampaignEditComponent } from './campaign/campaign-edit/campaign-edit.component';
 import { CampaignItemComponent } from './campaign/campaign-item/campaign-item.component';
+import { MagicalItemComponent } from './magical-item/magical-item.component';
+import { MagicalItemEditComponent } from './magicalItem/magical-item-edit/magical-item-edit.component';
+import { MagicalItemItemComponent } from './magicalItem/magical-item-item/magical-item-item.component';
+import { MagicalItemListComponent } from './magicalItem/magical-item-list/magical-item-list.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,10 @@ import { CampaignItemComponent } from './campaign/campaign-item/campaign-item.co
     CampaignListComponent,
     CampaignEditComponent,
     CampaignItemComponent,
+    MagicalItemComponent,
+    MagicalItemEditComponent,
+    MagicalItemItemComponent,
+    MagicalItemListComponent,
   ],
   imports: [
     BrowserModule,

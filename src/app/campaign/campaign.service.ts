@@ -34,6 +34,7 @@ export class CampaignService {
     return this.httpClient.get<Campaign[]>(this.url);
   }
 
+  //esta mal el delete
   deleteCampaign(index: number) {
     this.fetchData().subscribe(campaigns => {
       this.campaignsChanged.next(campaigns.slice());

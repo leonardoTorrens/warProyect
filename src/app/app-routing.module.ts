@@ -13,12 +13,15 @@ import { ArmyEditComponent } from './army/army-edit/army-edit.component';
 import { ArmyListComponent } from './army/army-list/army-list.component';
 import { CampaignEditComponent } from './campaign/campaign-edit/campaign-edit.component';
 import { CampaignListComponent } from './campaign/campaign-list/campaign-list.component';
+import { MagicalObjectListComponent } from './magicalObject/magical-object-list/magical-object-list.component';
+import { MagicalObjectEditComponent } from './magicalObject/magical-object-edit/magical-object-edit.component';
+import { MagicalObjectComponent } from './magicalObject/magical-object.component';
 
 const appRoutes: Routes = [
-  { path: 'auth', component: AuthComponent },
-  { path: 'playerSettings', component: PlayerSettingsComponent },
-  { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: 'auth', component: AuthComponent },
+  { path: 'playerSettings', component: PlayerSettingsComponent, canActivate:[AuthGuard] },
+  { path: 'home', component: HomeComponent },
   { path: 'units', component: UnitComponent, canActivate:[AuthGuard], children: [
     { path: 'addUnit', component: UnitEditComponent },
     { path: 'editUnit/:id', component: UnitEditComponent },
@@ -33,6 +36,11 @@ const appRoutes: Routes = [
     { path: 'addArmy', component: ArmyEditComponent },
     { path: 'editArmy/:id', component: ArmyEditComponent },
     { path: 'listArmy', component: ArmyListComponent }
+  ]}, 
+  { path: 'magicalObject', component: MagicalObjectComponent, canActivate:[AuthGuard], children: [
+    { path: 'addMagicalObject', component: MagicalObjectEditComponent },
+    { path: 'editMagicalObject/:id', component: MagicalObjectEditComponent },
+    { path: 'listMagicalObject', component: MagicalObjectListComponent }
   ]}, 
 ];
 

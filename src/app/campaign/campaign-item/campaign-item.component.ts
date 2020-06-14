@@ -22,6 +22,6 @@ export class CampaignItemComponent implements OnInit {
   }
 
   onEditArmy(){
-    this.router.navigate(['../editCampaign>/'+this.campaign.id],{relativeTo: this.route});
+    this.router.navigate(['../editCampaign/'+this.campaign.id],{relativeTo: this.route});
   }
 }
