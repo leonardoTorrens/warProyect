@@ -25,18 +25,31 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="ruleSet">Set de Reglas:</label>
+                        <select id="ruleSet" class="form-control" formControlName="ruleSet">
+                            <option *ngFor="let ruleSet of rulesSet" [value]="ruleSet">
+                              {{ruleSet}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div *ngIf="editMode">
                 <div class="row">
                     <div class="col-xs-12">
                         <button type="button" class="btn btn-success" (click)="onAddUnit()">Agregar Unidad</button>
                     </div>
                 </div>
+                <br><br>
                 <div class="row">
                     <div class="col-xs-6"> <!-- Componente para listado de unidades agregadas -->
-                        
+                        <app-army-unit-item *ngFor="let unit of units" [unit]="unit"></app-army-unit-item>
                     </div>
                     <div class="col-xs-6"> <!-- Componente para agregar/editar una unidad -->
-                        
+                        <app-army-unit-add [selectedUnit]="selectedUnit" [selectedUnitMode]='selectedUnitMode'></app-army-unit-add>
                     </div>
                 </div>
             </div>

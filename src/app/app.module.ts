@@ -23,7 +23,6 @@ import { PlayerSettingsComponent } from './player-settings/player-settings.compo
 import { HomeComponent } from './home/home.component';
 import { ArmyEditComponent } from './army/army-edit/army-edit.component';
 import { ArmyItemComponent } from './army/army-item/army-item.component';
-import { ArmyAddUnitComponent } from './army/army-add-unit/army-add-unit.component';
 import { ArmyListComponent } from './army/army-list/army-list.component';
 import { CampaignListComponent } from './campaign/campaign-list/campaign-list.component';
 import { CampaignEditComponent } from './campaign/campaign-edit/campaign-edit.component';
@@ -35,7 +34,9 @@ import { MagicalObjectListComponent } from './magicalObject/magical-object-list/
 import { SpellComponent } from './spell/spell.component';
 import { SpellEditComponent } from './spell/spell-edit/spell-edit.component';
 import { SpellListComponent } from './spell/spell-list/spell-list.component';
-import { SpellItemComponent } from './spell/spell-item/spell-item.component'
+import { SpellItemComponent } from './spell/spell-item/spell-item.component';
+import { ArmyUnitItemComponent } from './army/army-unit/army-unit-item/army-unit-item.component';
+import { ArmyUnitAddComponent } from './army/army-unit/army-unit-add/army-unit-add.component';
 
 @NgModule({
   declarations: [
@@ -56,8 +57,9 @@ import { SpellItemComponent } from './spell/spell-item/spell-item.component'
     HomeComponent,
     ArmyEditComponent,
     ArmyItemComponent,
-    ArmyAddUnitComponent,
     ArmyListComponent,
+    ArmyUnitItemComponent,
+    ArmyUnitAddComponent,
     CampaignListComponent,
     CampaignEditComponent,
     CampaignItemComponent,
@@ -72,14 +74,14 @@ import { SpellItemComponent } from './spell/spell-item/spell-item.component'
   ],
   imports: [
     BrowserModule,
-    FormsModule, 
+    FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot(fromApp.appReducer)
   ],
-  providers: [  
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

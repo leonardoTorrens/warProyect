@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { Army } from './army.model';
 import { HttpClient } from '@angular/common/http';
 import { DataStorageService } from '../shared/data-storage.service';
+import { SelectedUnit } from './army-unit/selectedUnit.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class ArmyService {
 
   url = 'https://ng-warhammer.firebaseio.com/army.json';
   armysChanged = new Subject<Army[]>();
+  armyUnitsChanged  = new Subject<SelectedUnit>();
 
   constructor(private httpClient: HttpClient, private dataStorage: DataStorageService) { }
 
@@ -66,5 +68,9 @@ export class ArmyService {
         });
       });
     }
+  }
+
+  addUnit(selectedUnit: SelectedUnit) {
+    this.armyUnitsChanged.next(selectedUnit);
   }
 }
