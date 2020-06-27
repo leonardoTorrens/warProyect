@@ -1,0 +1,13 @@
+2020-06-20 13:18:17,780 INFO org.springframework.boot.StartupInfoLogger [main] Starting Start using Java 1.8.0_181 on matias-nPC with PID 23484 (C:\Users\Matias\Documents\GitHub\warProyect\target\classes started by Matias in C:\Users\Matias\Documents\GitHub\warProyect)
+2020-06-20 13:18:17,786 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-06-20 13:18:19,666 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 9290 (http)
+2020-06-20 13:18:19,689 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-9290"]
+2020-06-20 13:18:19,690 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2020-06-20 13:18:19,691 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.36]
+2020-06-20 13:18:19,865 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2020-06-20 13:18:19,866 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2010 ms
+2020-06-20 13:18:20,124 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-20 13:18:20,409 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-9290"]
+2020-06-20 13:18:20,457 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 9290 (http) with context path ''
+2020-06-20 13:18:20,469 INFO org.springframework.boot.StartupInfoLogger [main] Started Start in 3.374 seconds (JVM running for 4.186)
+2020-06-20 13:18:20,472 INFO com.anything.warProyect.Start [main] warProyect is up
